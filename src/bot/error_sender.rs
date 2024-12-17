@@ -1,8 +1,9 @@
+use std::env;
+
 use rand::Rng;
 use teloxide::prelude::*;
 use teloxide::types::*;
 
-use crate::constants::moderators::MODERATOR_ID;
 use crate::global_data::get_bot;
 
 use super::send_message;
@@ -47,7 +48,11 @@ pub fn send_unexpected_error(user: &UserId, error: String) {
     });
 }
 pub fn send_error_to_moderator(error: String) {
-    send_unexpected_error(&MODERATOR_ID, error);
+    let moderator_int: u64 = env::var("MODERATOR_ID")
+        .expect("Moderator ID not set")
+        .parse()
+        .expect("Moderator ID not a number");
+    send_unexpected_error(&UserId(moderator_int), error);
 }
 // pub fn send_unexpected_callback_function_error(user: &User, callback: &str) {
 //     let user_id = user.id;
