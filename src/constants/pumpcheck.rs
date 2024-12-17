@@ -1,0 +1,4 @@
+pub const SPECIAL_PERCENTAGE: f64 = 60.0;
+pub const OVER_SPECIAL_PERCENTAGE: f64 = 50.0;
+
+pub const MIN_MARKET_CAP: u32 = 30_000;
